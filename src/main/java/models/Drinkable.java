@@ -1,13 +1,22 @@
 package models;
 
+import java.util.List;
+
 public interface Drinkable {
-	/*
-	- ProductId
-	- Name
-	- Alcohol
-	- Volume
-	- Price
-	- Description
-	- List of ratings
-	 */
+
+	int getProductId();
+	
+	String getName();
+	
+	double getAlcohol();
+	
+	double getVolume();
+	
+	double getPrice();
+	
+	String getDescription();
+	
+	double getAvgRating();
+	
+	List<String> getRatings();
 }
