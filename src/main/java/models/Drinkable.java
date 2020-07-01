@@ -19,4 +19,6 @@ public interface Drinkable {
 	double getAvgRating();
 	
 	List<Rating> getRatings();
+	
+
 }
