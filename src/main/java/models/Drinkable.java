@@ -18,5 +18,5 @@ public interface Drinkable {
 	
 	double getAvgRating();
 	
-	List<String> getRatings();
+	List<Rating> getRatings();
 }
