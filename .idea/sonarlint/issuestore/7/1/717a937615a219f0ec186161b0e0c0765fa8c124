@@ -1,0 +1,11 @@
+
+`
+java:S1128"@Remove this unused import 'org.apache.http.entity.StringEntity'.(ş©Ú‹şÿÿÿÿ8Šå²­².
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÚâĞûÿÿÿÿ8Šå²­².
+Z	java:S106,"9Replace this use of System.out or System.err by a logger.(Ï¢ÅÊşÿÿÿÿ8»ÉÇ­².
+V
+java:S3516"9Refactor this method to not always return the same value.(ŞÀ£8²ŞÉ­².
+O
+java:S1135 "2Complete the task associated to this TODO comment.(”¹Âµ8»ÉÇ­².
+]	java:S125"<This block of commented-out lines of code should be removed.(ƒæàÇúÿÿÿÿ8»ÉÇ­².
+U	java:S1060"9Replace this use of System.out or System.err by a logger.(·¶ ™8»ÉÇ­².

@@ -11,3 +11,5 @@ O
 src/main/java/models/Drink.java,f/2/f2fd0c3986b420fc07d1f37aafb4fcd410b50760
 N
 src/main/java/models/Wine.java,d/a/daf6a23dd67846843c5c8826ca045a5cd91ae6b7
+W
+'src/main/java/Utils/ProductDetails.java,7/1/717a937615a219f0ec186161b0e0c0765fa8c124
