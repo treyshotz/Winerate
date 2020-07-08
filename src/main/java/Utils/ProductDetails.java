@@ -85,13 +85,10 @@ public class ProductDetails {
 		try {
 			String resultString = EntityUtils.toString(entity);
 			String resultString2 = resultString.substring(1, resultString.length() - 1);
-			System.out.println(resultString2.charAt(0));
-			System.out.println(resultString2);
 			JSONObject resultObject = new JSONObject(resultString2);
-			String price = resultObject.getString("prices");
-			System.out.println(price);
-			System.out.println("NEIda");
-		} catch (IOException e) {
+			String priceString = resultObject.getJSONArray("prices").getJSONObject(0).get("salesPrice").toString();
+			double priceInt = Double.parseDouble(priceString);
+		} catch (IOException | org.json.JSONException e) {
 			e.printStackTrace();
 		}
 		return false;
