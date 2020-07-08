@@ -17,6 +17,8 @@ public class ProductDetails {
 	
 	private static HttpEntity entity;
 	
+	
+	
 	/**
 	 * Assembles product information to a specific product by getting data
 	 * from the API and process the data into desired output
@@ -34,7 +36,6 @@ public class ProductDetails {
 		formatApiData(apiData);
 		return false;
 	}
-	
 	
 	/**
 	 * Retrieves the data from the API
@@ -83,10 +84,13 @@ public class ProductDetails {
 	private static boolean formatApiData(HttpEntity entity) {
 		try {
 			String resultString = EntityUtils.toString(entity);
-			String resultString2 = resultString.substring(0, resultString.length() - 1);
-			System.out.println(resultString);
-			JSONObject resultObject = new JSONObject(resultString);
-			String price = resultObject.getString("salesPrice");
+			String resultString2 = resultString.substring(1, resultString.length() - 1);
+			System.out.println(resultString2.charAt(0));
+			System.out.println(resultString2);
+			JSONObject resultObject = new JSONObject(resultString2);
+			String price = resultObject.getString("prices");
+			System.out.println(price);
+			System.out.println("NEIda");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -94,7 +98,7 @@ public class ProductDetails {
 	}
 	
 	public static void main(String[] args) {
-		getDataFromApi(126801);
+		getProductDetails(126801);
 	}
 	
 }
