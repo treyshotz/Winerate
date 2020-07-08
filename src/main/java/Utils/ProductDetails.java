@@ -82,12 +82,20 @@ public class ProductDetails {
 	 * @return data in desired output
 	 */
 	private static boolean formatApiData(HttpEntity entity) {
+		
 		try {
 			String resultString = EntityUtils.toString(entity);
 			String resultString2 = resultString.substring(1, resultString.length() - 1);
 			JSONObject resultObject = new JSONObject(resultString2);
 			String priceString = resultObject.getJSONArray("prices").getJSONObject(0).get("salesPrice").toString();
 			double priceInt = Double.parseDouble(priceString);
+			
+			JSONObject basic = resultObject.getJSONObject("basic");
+			String name = basic.getString("productLongName");
+			double alcohol = basic.getDouble("alcoholContent");
+			double volume = basic.getDouble("volume");
+			
+			
 		} catch (IOException | org.json.JSONException e) {
 			e.printStackTrace();
 		}
