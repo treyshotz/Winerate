@@ -7,6 +7,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -90,13 +91,28 @@ public class ProductDetails {
 			String priceString = resultObject.getJSONArray("prices").getJSONObject(0).get("salesPrice").toString();
 			double priceInt = Double.parseDouble(priceString);
 			
+
 			JSONObject basic = resultObject.getJSONObject("basic");
 			String name = basic.getString("productLongName");
 			double alcohol = basic.getDouble("alcoholContent");
 			double volume = basic.getDouble("volume");
 			
+			//TODO: Maybe take object as input so we can check if it is a wine or not
+			formatWineData(resultObject);
 			
 		} catch (IOException | org.json.JSONException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	private static boolean formatWineData(JSONObject resultObject) {
+		
+		try {
+			JSONObject ingredients = resultObject.getJSONObject("ingredients");
+			JSONArray grapes = ingredients.getJSONArray("grapes");
+			System.out.println(grapes.toString());
+		} catch (org.json.JSONException e) {
 			e.printStackTrace();
 		}
 		return false;
