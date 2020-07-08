@@ -111,7 +111,6 @@ public class ProductDetails {
 		try {
 			JSONObject ingredients = resultObject.getJSONObject("ingredients");
 			JSONArray grapes = ingredients.getJSONArray("grapes");
-			System.out.println(grapes.toString());
 		} catch (org.json.JSONException e) {
 			e.printStackTrace();
 		}
