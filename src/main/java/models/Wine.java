@@ -26,6 +26,16 @@ public class Wine extends Drink {
 		this.organic = organic;
 		this.grapes = grapes;
 	}
+
+	public Wine(int productId, String name, double alcohol, double volume, double price, String description, String type, int age, String country, String region, boolean organic, List<String> grapes) {
+		super(productId, name, alcohol, volume, price, description);
+		this.type = type;
+		this.age = age;
+		this.country = country;
+		this.region = region;
+		this.organic = organic;
+		this.grapes = grapes;
+	}
 	
 	public String getType() {
 		return type;
