@@ -5,6 +5,7 @@ import java.util.List;
 public class Wine extends Drink {
 	//TODO: Decide what to include in a wine object
 	//Redwine, whitewine, rose, port, sparkling
+	//IMO we dont need to check if organic, we not gay
 	private String type;
 	private int age;
 	private String country;
@@ -16,8 +17,8 @@ public class Wine extends Drink {
 	public Wine() {
 	}
 	
-	public Wine(int productId, String name, double alcohol, double volume, double price, String description, double avgRating, List<Rating> ratings, String type, int age, String country, String region, boolean organic, List<String> grapes) {
-		super(productId, name, alcohol, volume, price, description, avgRating, ratings);
+	public Wine(int productId, String name, double alcohol, double volume, double price, String description, List<Rating> ratings, String type, int age, String country, String region, boolean organic, List<String> grapes) {
+		super(productId, name, alcohol, volume, price, description, ratings);
 		this.type = type;
 		this.age = age;
 		this.country = country;
