@@ -24,6 +24,14 @@ public class Whisky extends Drink {
         this.method = method;
     }
 
+    public Whisky(int productId, String name, double alcohol, double volume, double price, String description, String type, int age, String region, String method){
+        super(productId, name, alcohol, volume, price, description);
+        this.type = type;
+        this.age = age;
+        this.region = region;
+        this.method = method;
+    }
+
     public String getType() {
         return type;
     }

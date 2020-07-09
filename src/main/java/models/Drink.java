@@ -28,6 +28,29 @@ public abstract class Drink implements Drinkable {
 		this.ratings = ratings;
 		this.avgRating = getAvgRating();
 	}
+
+	/**
+	 * Constructor where we do not take in ratings as parameter
+	 * Its highly likely that we will add a drink before any users have rated it
+	 * The average rating is set to 0
+	 * @param productId
+	 * @param name
+	 * @param alcohol
+	 * @param volume
+	 * @param price
+	 * @param description
+	 */
+
+	public Drink(int productId, String name, double alcohol, double volume, double price, String description) {
+		this.productId = productId;
+		this.name = name;
+		this.alcohol = alcohol;
+		this.volume = volume;
+		this.price = price;
+		this.description = description;
+		this.avgRating = 0;
+	}
+
 	
 	public int getProductId() {
 		return productId;
@@ -52,9 +75,14 @@ public abstract class Drink implements Drinkable {
 	public String getDescription() {
 		return description;
 	}
-	
+
+	/**
+	 * 		//If the average ratings is 0, but there are ratings registered, the findAvrRating method is used to determine average rating
+	 * @return
+	 */
+
 	public double getAvgRating() {
-		if (avgRating == 0) findAvrRating();
+		if (avgRating == 0 && !ratings.isEmpty()) findAvrRating();
 		return avgRating;
 	}
 	
@@ -95,6 +123,10 @@ public abstract class Drink implements Drinkable {
 		this.ratings.add(newRating);
 		findAvrRating();
 	}
+
+	/**
+	 * Finds the average rating based on the sum of ratings in list
+	 */
 
 	public void findAvrRating(){
 		this.avgRating = ratings.stream().mapToDouble(Rating::getRating).sum() / ratings.size();
