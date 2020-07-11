@@ -1,4 +1,7 @@
-package models;
+package services;
+
+import models.Drink;
+import models.Rating;
 
 import java.util.ArrayList;
 import java.util.List;
