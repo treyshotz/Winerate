@@ -59,4 +59,9 @@ public class DrinkService {
         return null;
     }
 
+    public List<Drink> sortDrinks(String field, boolean ascending){
+        //I dont really take ascending/descending into consideration here, couldnt find a good way
+        return Sort.by(field).getDrinksSorted(drinksList);
+    }
+
 }
