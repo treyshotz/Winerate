@@ -5,12 +5,10 @@ import java.util.List;
 public class Wine extends Drink {
 	//TODO: Decide what to include in a wine object
 	//Redwine, whitewine, rose, port, sparkling
-	//IMO we dont need to check if organic, we not gay
 	private String type;
 	private int age;
 	private String country;
 	private String region;
-	private boolean organic;
 	//A wine can have several different grapes
 	private List<String> grapes;
 	
@@ -23,7 +21,6 @@ public class Wine extends Drink {
 		this.age = age;
 		this.country = country;
 		this.region = region;
-		this.organic = organic;
 		this.grapes = grapes;
 	}
 
@@ -33,7 +30,6 @@ public class Wine extends Drink {
 		this.age = age;
 		this.country = country;
 		this.region = region;
-		this.organic = organic;
 		this.grapes = grapes;
 	}
 	
@@ -67,14 +63,6 @@ public class Wine extends Drink {
 	
 	public void setRegion(String region) {
 		this.region = region;
-	}
-	
-	public boolean isOrganic() {
-		return organic;
-	}
-	
-	public void setOrganic(boolean organic) {
-		this.organic = organic;
 	}
 	
 	public List<String> getGrapes() {
