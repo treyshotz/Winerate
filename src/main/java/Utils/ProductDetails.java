@@ -1,5 +1,6 @@
 package Utils;
 
+import models.Drink;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -9,7 +10,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 
 import java.io.IOException;
 import java.net.URI;
@@ -24,17 +24,21 @@ public class ProductDetails {
 	 * Assembles product information to a specific product by getting data
 	 * from the API and process the data into desired output
 	 *
-	 * @param productId of the product that will be searched for
+	 * @param drink that will be getting information about
 	 * @return true/false
 	 */
-	public static boolean getProductDetails(int productId) {
+	public static boolean getProductDetails(Drink drink) {
+		int productId = drink.getProductId();
 		HttpEntity apiData = getDataFromApi(productId);
 		if(apiData == null) {
 			//Log something
 			return false;
 		}
 		
-		formatApiData(apiData);
+		if (formatApiData(apiData)) {
+			return true;
+		}
+		
 		return false;
 	}
 	
@@ -111,6 +115,22 @@ public class ProductDetails {
 		try {
 			JSONObject ingredients = resultObject.getJSONObject("ingredients");
 			JSONArray grapes = ingredients.getJSONArray("grapes");
+			if (grapes != null) {
+				for (int i = 1; i < grapes.length(); i++) {
+					grapesString.add(grapes.getJSONObject(i));
+				}
+			}
+			
+			JSONObject origins = resultObject.getJSONObject("origins").getJSONObject("origin");
+			String country = origins.getString("country");
+			String region = origins.getString("region");
+			
+			JSONObject basic = resultObject.getJSONObject("basic");
+			int vintage = basic.getInt("vintage");
+			
+			JSONObject classification = resultObject.getJSONObject("classification");
+			String type = classification.getString("productTypeName");
+			
 		} catch (org.json.JSONException e) {
 			e.printStackTrace();
 		}
