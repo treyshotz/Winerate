@@ -15,7 +15,7 @@ public class Wine extends Drink {
 	public Wine() {
 	}
 	
-	public Wine(int productId, String name, double alcohol, double volume, double price, String description, List<Rating> ratings, String type, int age, String country, String region, boolean organic, List<String> grapes) {
+	public Wine(int productId, String name, double alcohol, double volume, double price, String description, List<Rating> ratings, String type, int age, String country, String region, List<String> grapes) {
 		super(productId, name, alcohol, volume, price, description, ratings);
 		this.type = type;
 		this.age = age;
@@ -24,7 +24,7 @@ public class Wine extends Drink {
 		this.grapes = grapes;
 	}
 
-	public Wine(int productId, String name, double alcohol, double volume, double price, String description, String type, int age, String country, String region, boolean organic, List<String> grapes) {
+	public Wine(int productId, String name, double alcohol, double volume, double price, String description, String type, int age, String country, String region, List<String> grapes) {
 		super(productId, name, alcohol, volume, price, description);
 		this.type = type;
 		this.age = age;
