@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public abstract class Drink implements Drinkable {
@@ -13,6 +14,8 @@ public abstract class Drink implements Drinkable {
 	private String description;
 	private double avgRating;
 	private List<Rating> ratings;
+	private final String AVR_FIELD = "average";
+	private final String NR_OF_RATINGS_FIELD = "nrofratings";
 	
 	
 	public Drink() {
@@ -131,4 +134,28 @@ public abstract class Drink implements Drinkable {
 	public void findAvrRating(){
 		this.avgRating = ratings.stream().mapToDouble(Rating::getRating).sum() / ratings.size();
 	}
+
+	/**
+	 * Takes in a String and checks if it equals any of the predetermined final sorting fields
+	 * @param field
+	 * @return the double value given the parameter
+	 */
+
+	public double getGeneric(String field){
+		if (field.toLowerCase().equals(AVR_FIELD)) {
+			return this.avgRating;
+		}
+		if (field.toLowerCase().equals(NR_OF_RATINGS_FIELD))
+			return this.ratings.size();
+		return 0;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Drink drink = (Drink) o;
+		return productId == drink.productId;
+	}
+
 }
