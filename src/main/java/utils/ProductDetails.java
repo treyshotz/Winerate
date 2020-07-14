@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import models.Drink;
 import models.Whisky;
@@ -31,8 +31,7 @@ public class ProductDetails {
 	 * @return true/false
 	 */
 	public static boolean getProductDetails(Drink drink) {
-		//int productId = drink.getProductId();
-		int productId = 126801;
+		int productId = drink.getProductId();
 		HttpEntity apiData = getDataFromApi(productId);
 		if(apiData == null) {
 			//Log something
@@ -133,7 +132,6 @@ public class ProductDetails {
 					grapesString.add(grapes.getJSONObject(i).toString());
 				}
 			}
-			
 			JSONObject origins = resultObject.getJSONObject("origins").getJSONObject("origin");
 			String country = origins.getString("country");
 			String region = origins.getString("region");
@@ -149,9 +147,4 @@ public class ProductDetails {
 		}
 		return false;
 	}
-	
-	public static void main(String[] args) {
-		getProductDetails(null);
-	}
-	
 }
