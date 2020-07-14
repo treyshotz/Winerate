@@ -4,6 +4,7 @@ import models.Rating;
 import models.Wine;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,8 +28,9 @@ class DrinkServiceTest {
 
     @Test
     void registerRating() {
-
-        ds.registerRating(wine, new Rating("Stian", 80, "Mhm, very nice", new Date()));
+        ds.registerDrink(wine);
+        ds.registerRating(wine, new Rating("Stian", 80, "Mhm, very nice", null));
+        assertEquals(wine, ds.getDrinksList().stream().findFirst().get());
     }
 
     @Test
@@ -45,5 +47,7 @@ class DrinkServiceTest {
 
     @Test
     void sortDrinks() {
+        ds.registerDrink(wine);
+        ds.registerDrink(wine2);
     }
 }

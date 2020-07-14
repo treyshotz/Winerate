@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ public abstract class Drink implements Drinkable {
 	private double price;
 	private String description;
 	private double avgRating;
-	private List<Rating> ratings;
+	private List<Rating> ratings = new ArrayList<>();
 	private final String AVR_FIELD = "average";
 	private final String NR_OF_RATINGS_FIELD = "nrofratings";
 	
