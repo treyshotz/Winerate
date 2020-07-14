@@ -1,6 +1,8 @@
 package Utils;
 
 import models.Drink;
+import models.Whisky;
+import models.Wine;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -13,6 +15,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 public class ProductDetails {
 	
@@ -28,14 +31,15 @@ public class ProductDetails {
 	 * @return true/false
 	 */
 	public static boolean getProductDetails(Drink drink) {
-		int productId = drink.getProductId();
+		//int productId = drink.getProductId();
+		int productId = 126801;
 		HttpEntity apiData = getDataFromApi(productId);
 		if(apiData == null) {
 			//Log something
 			return false;
 		}
 		
-		if (formatApiData(apiData)) {
+		if (formatApiData(apiData, drink)) {
 			return true;
 		}
 		
@@ -86,38 +90,47 @@ public class ProductDetails {
 	 * @param entity from the API call
 	 * @return data in desired output
 	 */
-	private static boolean formatApiData(HttpEntity entity) {
+	private static boolean formatApiData(HttpEntity entity, Drink drink) {
 		
 		try {
 			String resultString = EntityUtils.toString(entity);
 			String resultString2 = resultString.substring(1, resultString.length() - 1);
 			JSONObject resultObject = new JSONObject(resultString2);
 			String priceString = resultObject.getJSONArray("prices").getJSONObject(0).get("salesPrice").toString();
-			double priceInt = Double.parseDouble(priceString);
-			
+			double priceDouble = Double.parseDouble(priceString);
 
 			JSONObject basic = resultObject.getJSONObject("basic");
 			String name = basic.getString("productLongName");
 			double alcohol = basic.getDouble("alcoholContent");
 			double volume = basic.getDouble("volume");
 			
-			//TODO: Maybe take object as input so we can check if it is a wine or not
-			formatWineData(resultObject);
+			drink.setPrice(priceDouble);
+			drink.setName(name);
+			drink.setAlcohol(alcohol);
+			drink.setVolume(volume);
 			
+			if(drink instanceof Wine) {
+				formatWineData(resultObject);
+			} else if(drink instanceof Whisky) {
+				//Format whisky data
+			}
 		} catch (IOException | org.json.JSONException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	private static boolean formatWineData(JSONObject resultObject) {
+		ArrayList<String> grapesString = new ArrayList<>();
+		
 		
 		try {
 			JSONObject ingredients = resultObject.getJSONObject("ingredients");
 			JSONArray grapes = ingredients.getJSONArray("grapes");
 			if (grapes != null) {
 				for (int i = 1; i < grapes.length(); i++) {
-					grapesString.add(grapes.getJSONObject(i));
+					grapesString.add(grapes.getJSONObject(i).toString());
 				}
 			}
 			
@@ -138,7 +151,7 @@ public class ProductDetails {
 	}
 	
 	public static void main(String[] args) {
-		getProductDetails(126801);
+		getProductDetails(null);
 	}
 	
 }
